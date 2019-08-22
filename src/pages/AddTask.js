@@ -25,8 +25,18 @@ const AddTask = ({ handleChange, resetNewValues, addNewTask, new_title, new_desc
         />
         <div className="modal-add__button-container">
           <Link to="/">
-            <button className="button-add" onClick={() => {addNewTask(); resetNewValues()}}>Add</button>
-            <button className="button-cancel" onClick={resetNewValues}>Cancel</button>
+            <button
+              className="button-add"
+              onClick={() => {
+                addNewTask();
+                resetNewValues();
+              }}
+            >
+              Add
+            </button>
+            <button className="button-cancel" onClick={resetNewValues}>
+              Cancel
+            </button>
           </Link>
         </div>
       </div>

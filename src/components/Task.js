@@ -11,28 +11,38 @@ const addZero = (number) => {
   return number;
 }
 
-const Task = ({id, title, description, date, deleteTask}) => {
+const Task = ({id, title, description, date, isFinished, deleteTask, finishTask}) => {
   return (
     <div className="task">
-      <h2 className="task__title">
-        {title}
-      </h2>
-      <p className="task__desc">
-        {description}
-      </p>
+      <h2 className="task__title">{title}</h2>
+      <p className="task__desc">{description}</p>
       <p className="task__date">
-        {`On ${days[date.getDay()]}, ${addZero(date.getDate())}.${addZero(date.getMonth())}.${date.getFullYear()}`}
+        {`On ${days[date.getDay()]}, ${addZero(date.getDate())}.${addZero(
+          date.getMonth()
+        )}.${date.getFullYear()}`}
       </p>
-      <div className="task__buttons">
-        <div className="task__button task__button--done" title="I am finished!">
-          <MdCheck />
+      {isFinished ? null : (
+        <div className="task__buttons">
+          <div
+            className="task__button task__button--done"
+            id={id}
+            title="I am finished!"
+            onClick={finishTask}
+          >
+            <MdCheck />
+          </div>
+          <div
+            className="task__button task__button--delete"
+            id={id}
+            onClick={deleteTask}
+            title="I give up!"
+          >
+            <MdClose />
+          </div>
         </div>
-        <div className="task__button task__button--delete" id={id} onClick={deleteTask} title="I give up!">
-          <MdClose />
-        </div>
-      </div>
+      )}
     </div>
-  )
+  );
 }
 
 export default Task;

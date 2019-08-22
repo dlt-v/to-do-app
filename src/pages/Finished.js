@@ -1,21 +1,20 @@
 import React from 'react'
-import Task from '../components/Task';
-import AddNew from '../components/AddNew';
 import SwitchButton from '../components/SwitchButton';
+import Task from '../components/Task';
 
 const renderSwitchButton = tasks => {
   const finishedTasks = tasks.filter(task => task.isFinished === true);
   
   if (finishedTasks.length > 0) return (
-    <SwitchButton onMain={true} text="finished tasks" />
+    <SwitchButton onMain={false} text="current tasks" />
   )
 };
 const renderTasks = tasks => {
-  const tasksToRender = tasks.filter(task => task.isFinished === false);
+  const tasksToRender = tasks.filter(task => task.isFinished === true);
   return tasksToRender;
 };
 
-const Home = ({ tasks, deleteTask, finishTask }) => {
+const Finished = ({ tasks, deleteTask, finishTask }) => {
   return (
     <div className="main">
       {renderSwitchButton(tasks)}
@@ -25,15 +24,14 @@ const Home = ({ tasks, deleteTask, finishTask }) => {
           key={task.id}
           title={task.title}
           description={task.description}
-          date={task.date}
           isFinished={task.isFinished}
+          date={task.date}
           deleteTask={deleteTask}
           finishTask={finishTask}
         />
       ))}
-      <AddNew />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Finished
