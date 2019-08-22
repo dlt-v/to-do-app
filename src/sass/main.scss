@@ -1,0 +1,249 @@
+//@import "background";
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: normal;
+  box-sizing: border-box;
+}
+body {
+  background-color: #d4d4d4;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 70px, rgba(255, 255, 255, 0.25) 70px, rgba(255,255,255,.25) 140px);
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+h1::selection {
+  color: #346dff;
+  background-color: #fff;
+}
+
+.main {
+  position: absolute;
+  max-width: 655px;
+  width: 90%;
+  min-width: 400px;
+  min-height: 200px;
+  max-height: 80vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 25px;
+  background-color: #346dff;
+
+  padding: 35px;
+  box-shadow: 0px 5px 5px hsla(0, 0%, 0%, 0.5%);
+  &__message {
+    margin: 20px 0;
+    display: block;
+    color: #fff;
+    text-align: center;
+    height: 100%;
+    &--action {
+      color: lime;
+      text-decoration: underline;
+      cursor: pointer;
+      &::selection {
+        color: #346dff;
+        background-color: #fff;
+      }
+    }
+  }
+  &::-webkit-scrollbar {
+    width: 50px;
+    position: absolute;
+    right: 10px;
+    display: none;
+  }
+ 
+  &::-webkit-scrollbar-track {
+    padding-top: 20px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    right: 10px;
+    border-radius: 25px;
+    
+  }
+}
+.modal-add {
+  &__title {
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  &__container {
+    position: absolute;
+    max-width: 655px;
+    width: 90%;
+    min-width: 400px;
+    min-height: 200px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 25px;
+    background-color: #346dff;
+
+    padding: 35px;
+    box-shadow: 0px 5px 5px hsla(0, 0%, 0%, 0.5%);
+  }
+  &__input {
+    width: 100%;
+    height: 40px;
+    font-size: 30px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 20px;
+    &--title {
+    }
+    &--description {
+      resize: none;
+      height: 130px;
+    }
+
+    &--task {
+      width: calc(100% - 35px);
+      float: right;
+    }
+  }
+  &__sub-task-container {
+    display: block;
+    height: auto;
+    width: 100%;
+    margin-bottom: 10px;
+    & h2 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+  }
+  &__sub-task {
+    display: block;
+    width: 100%;
+    height: 45px;
+    margin-bottom: 10px;
+
+    & label {
+      color: #fff;
+      font-size: 35px;
+    }
+    & input {
+      width: calc(100% - 40px);
+      float: right;
+      height: 40px;
+      font-size: 30px;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+    }
+  }
+  &__button-container {
+    width: 100%;
+    height: 50px;
+    & button {
+      position: relative;
+      width: 100px;
+      font-size: 25px;
+      padding: 10px;
+      text-transform: uppercase;
+      border: none;
+      color: #fff;
+      border-radius: 10px;
+
+      cursor: pointer;
+      float: right;
+      margin-left: 20px;
+    }
+  }
+}
+.button {
+  &-cancel {
+    background-color: rgb(185, 0, 0);
+  }
+  &-add {
+    background-color: rgb(0, 187, 0);
+  }
+}
+.task {
+  padding: 20px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0px 5px 5px hsla(0, 0%, 0%, 0.25%);
+  margin-bottom: 20px;
+  position: relative;
+  min-height: 150px;
+  &__title {
+    font-size: 30px;
+  }
+  &__desc {
+    font-size: 20px;
+    display: inline-block;
+    max-width: 80%;
+    margin-bottom: 10px;
+    word-break: break-all;
+  }
+  &__buttons {
+    position: absolute;
+    width: 50px;
+    height: 110px;
+    top: 20px;
+    right: 20px;
+  }
+  &__button {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: box-shadow .2s;
+    & svg {
+      color: #fff;
+      font-size: 40px;
+      margin: 5px;
+    }
+    &:hover {
+      box-shadow: 0px 0px 3px 1px hsla(0, 0%, 0%, 0.5%); 
+    }
+    &:active {
+      box-shadow: 0px 0px 3px hsla(0, 0%, 0%, 0.5%); 
+    }
+    &--done {
+      background-color: #29FF3F;
+    }
+    &--delete {
+      background-color: #FF2929;
+    }
+  }
+}
+.add-new {
+  width: 70px;
+  height: 70px;
+  background-color: #fff;
+  float: right;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: box-shadow .2s;
+  box-shadow: 0px 5px 5px hsla(0, 0%, 0%, 0.25%);
+  & svg {
+    color: #575757;
+    font-size: 50px;
+    margin: 10px;
+  }
+  &:hover {
+    box-shadow: 0px 5px 5px 1px hsla(0, 0%, 0%, 0.5%); 
+  }
+  &:active {
+    box-shadow: 0px 5px 3px hsla(0, 0%, 0%, 0.5%); 
+  }
+}

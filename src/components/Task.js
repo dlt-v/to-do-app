@@ -24,10 +24,10 @@ const Task = ({id, title, description, date, deleteTask}) => {
         {`On ${days[date.getDay()]}, ${addZero(date.getDate())}.${addZero(date.getMonth())}.${date.getFullYear()}`}
       </p>
       <div className="task__buttons">
-        <div className="task__button task__button--done">
+        <div className="task__button task__button--done" title="I am finished!">
           <MdCheck />
         </div>
-        <div className="task__button task__button--delete" id={id} onClick={deleteTask}>
+        <div className="task__button task__button--delete" id={id} onClick={deleteTask} title="I give up!">
           <MdClose />
         </div>
       </div>
