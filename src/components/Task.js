@@ -18,7 +18,7 @@ const Task = ({id, title, description, date, isFinished, deleteTask, finishTask}
       <p className="task__desc">{description}</p>
       <p className="task__date">
         {`On ${days[date.getDay()]}, ${addZero(date.getDate())}.${addZero(
-          date.getMonth()
+          date.getMonth() + 1
         )}.${date.getFullYear()}`}
       </p>
       {isFinished ? null : (
