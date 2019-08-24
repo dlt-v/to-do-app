@@ -165,10 +165,22 @@ h1::selection {
     margin-left: 20px; }
 
 .button-cancel {
-  background-color: #b90000; }
+  background-color: #b90000;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: box-shadow .2s; }
+  .button-cancel:hover {
+    box-shadow: 0px 5px 5px 1px rgba(0, 0, 0, 0.5); }
+  .button-cancel:active {
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.5); }
 
 .button-add {
-  background-color: #00bb00; }
+  background-color: #00bb00;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  transition: box-shadow .2s; }
+  .button-add:hover {
+    box-shadow: 0px 5px 5px 1px rgba(0, 0, 0, 0.5); }
+  .button-add:active {
+    box-shadow: 0px 5px 3px rgba(0, 0, 0, 0.5); }
 
 .task {
   padding: 20px;

@@ -19,7 +19,7 @@ const Task = ({id, title, description, date, isFinished, deleteTask, finishTask}
       <p className="task__date">
         {`On ${days[date.getDay()]}, ${addZero(date.getDate())}.${addZero(
           date.getMonth() + 1
-        )}.${date.getFullYear()}`}
+        )}.${date.getFullYear()} at ${date.getHours()}:${date.getMinutes()}`}
       </p>
       {isFinished ? null : (
         <div className="task__buttons">

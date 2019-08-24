@@ -7,16 +7,15 @@ import AddTask from "./pages/AddTask";
 import "./App.css";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { Route, Switch } from "react-router-dom";
-
-export default class App extends Component {
+import { Route, Switch, withRouter } from "react-router-dom";
+class App extends Component {
   state = {
     tasks: [
       {
         id: 0,
         title: "I am an example task",
         description: "Ea culpa non magna quis.",
-        date: new Date('1999, 07, 24'),
+        date: new Date('July 12, 2019 17:23:00'),
         isFinished: false
       },
       {
@@ -72,25 +71,32 @@ export default class App extends Component {
     )
   }
   addNewTask = () => {
-    
+    let errors = [];
     const tasks = [...this.state.tasks];
     const newTitle = this.state.new_title;
+    if (newTitle.length === 0) errors.push('Please enter a valid title');
     const newDescription = this.state.new_description;
+    if (newDescription.length === 0) errors.push('Please enter a valid description');
+    
     const newDate = this.state.new_date;
     const newId = (this.state.new_id);
     
-    console.log(`Added task with id: ${newId} - ${newTitle}, ${newDescription}`);
-    
-    this.setState({
-      tasks: [...tasks, {
-        id: newId,
-        title: newTitle,
-        description: newDescription,
-        date: newDate,
-        isFinished: false
-      }],
-      new_id: newId + 1
-    })
+    if(errors.length > 0) {
+      alert(errors[0], errors[1]);
+    } else {
+      this.setState({
+        tasks: [...tasks, {
+          id: newId,
+          title: newTitle,
+          description: newDescription,
+          date: newDate,
+          isFinished: false
+        }],
+        new_id: newId + 1
+      })
+      this.resetNewValues();
+      this.props.history.push('/');
+    }
   }
   deleteTask = (event) => {
     const id = parseInt(event.currentTarget.id);
@@ -144,3 +150,4 @@ export default class App extends Component {
     );
   }
 }
+export default withRouter(App);

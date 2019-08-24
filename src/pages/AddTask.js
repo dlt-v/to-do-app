@@ -1,5 +1,4 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react';
 import DatePicker from 'react-datepicker';
 
 const AddTask = ({ handleChange, handleDateChange, resetNewValues, addNewTask, new_title, new_description, new_date }) => {
@@ -37,20 +36,17 @@ const AddTask = ({ handleChange, handleDateChange, resetNewValues, addNewTask, n
           />
         </div>
         <div className="modal-add__button-container">
-          <Link to="/">
-            <button
-              className="button-add"
-              onClick={() => {
-                addNewTask();
-                resetNewValues();
-              }}
-            >
-              Add
-            </button>
-            <button className="button-cancel" onClick={resetNewValues}>
-              Cancel
-            </button>
-          </Link>
+          <button
+            className="button-add"
+            onClick={() => {
+              addNewTask();
+            }}
+          >
+            Add
+          </button>
+          <button className="button-cancel" onClick={resetNewValues}>
+            Cancel
+          </button>
         </div>
       </div>
     </div>
