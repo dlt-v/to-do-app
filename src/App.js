@@ -5,6 +5,7 @@ import Error from "./pages/Error";
 import AddTask from "./pages/AddTask";
 
 import "./App.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 import { Route, Switch } from "react-router-dom";
 
@@ -15,7 +16,7 @@ export default class App extends Component {
         id: 0,
         title: "I am an example task",
         description: "Ea culpa non magna quis.",
-        date: new Date('December 17, 1995 03:24:00'),
+        date: new Date('1999, 07, 24'),
         isFinished: false
       },
       {
@@ -33,12 +34,16 @@ export default class App extends Component {
         isFinished: true
       },
     ],
+    new_id: 3,
     new_title: '',
-    new_description: ''
+    new_description: '',
+    new_date: new Date()
   };
 
   handleChange = event => {
+    
     const target = event.currentTarget;
+    
     const value = target.value;
     const name = event.target.name;
     
@@ -49,7 +54,14 @@ export default class App extends Component {
     )
     
   }
-  //Resent new values after closing AddTask form
+  handleDateChange = event => {
+    this.setState(
+      {
+        new_date: event
+      }
+    )
+  }
+  //Reset new values after closing AddTask form
   resetNewValues = () => {
     this.setState(
       {
@@ -59,34 +71,46 @@ export default class App extends Component {
     )
   }
   addNewTask = () => {
-    let newId = this.state.tasks.length;
-    let tasks = [...this.state.tasks];
-    let newTitle = this.state.new_title;
-    let newDescription = this.state.new_description;
+    
+    const tasks = [...this.state.tasks];
+    const newTitle = this.state.new_title;
+    const newDescription = this.state.new_description;
+    const newDate = this.state.new_date;
+    const newId = (this.state.new_id);
+    
+    console.log(`Added task with id: ${newId} - ${newTitle}, ${newDescription}`);
+    
     this.setState({
       tasks: [...tasks, {
         id: newId,
         title: newTitle,
         description: newDescription,
-        date: new Date()
-      }]
+        date: newDate,
+        isFinished: false
+      }],
+      new_id: newId + 1
     })
   }
   deleteTask = (event) => {
-    let id = event.currentTarget.id;
-    let tasks = [...this.state.tasks];
-
-    tasks.splice(id, 1);
+    const id = parseInt(event.currentTarget.id);
+    const tasks = [...this.state.tasks];
+    const arrayId = tasks.findIndex(task => task.id === id);
+    tasks.splice(arrayId, 1);
+    
     this.setState({
       tasks
     })
-    
+    console.log(`Deleted an item with ID of ${id}`);
   }
-  //TO DO
   finishTask = (event) => {
-    const target = event.currentTarget;
-    console.log(target);
-    
+    const id = parseInt(event.currentTarget.id);
+    const tasks = [...this.state.tasks];
+    const arrayId = tasks.findIndex(task => task.id === id);
+    console.log(id);
+    tasks[arrayId].isFinished = true;
+    this.setState({
+      tasks
+    })
   }
   render() {
     return (
@@ -110,7 +134,7 @@ export default class App extends Component {
             exact
             path="/add_task"
             render={() => (
-              <AddTask handleChange={this.handleChange} resetNewValues={this.resetNewValues} addNewTask={this.addNewTask} new_title={this.state.new_title} new_description={this.state.new_description}/>
+              <AddTask handleChange={this.handleChange} handleDateChange={this.handleDateChange} resetNewValues={this.resetNewValues} addNewTask={this.addNewTask} new_title={this.state.new_title} new_description={this.state.new_description} new_date={this.state.new_date}/>
             )}
           />
           <Route component={Error} />

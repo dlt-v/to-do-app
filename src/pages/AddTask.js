@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-const AddTask = ({ handleChange, resetNewValues, addNewTask, new_title, new_description }) => {
+import DatePicker from 'react-datepicker';
+
+const AddTask = ({ handleChange, handleDateChange, resetNewValues, addNewTask, new_title, new_description, new_date }) => {
   return (
     <div className="modal-add">
       <div className="modal-add__container">
@@ -23,6 +25,17 @@ const AddTask = ({ handleChange, resetNewValues, addNewTask, new_title, new_desc
           onChange={handleChange}
           value={new_description}
         />
+        <div className="modal-add__date-container">
+          <DatePicker className="modal-add__date-input"
+            selected={new_date}
+            onChange={handleDateChange}
+            showTimeSelect
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            dateFormat="MMMM d, yyyy h:mm aa"
+            timeCaption="time"
+          />
+        </div>
         <div className="modal-add__button-container">
           <Link to="/">
             <button
