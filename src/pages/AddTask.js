@@ -8,6 +8,7 @@ const AddTask = ({ handleChange, handleDateChange, resetNewValues, addNewTask, n
         <h1 className="modal-add__title">Add a new task!</h1>
         <input
           type="text"
+          maxlength="20"
           name="new_title"
           id="new_title"
           className="modal-add__input--title modal-add__input"
@@ -16,6 +17,7 @@ const AddTask = ({ handleChange, handleDateChange, resetNewValues, addNewTask, n
           value={new_title}
         />
         <textarea
+          maxlength="200"
           type="text"
           name="new_description"
           id="new_description"
