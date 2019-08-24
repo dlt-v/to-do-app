@@ -66,7 +66,8 @@ export default class App extends Component {
     this.setState(
       {
         new_title: '',
-        new_description: ''
+        new_description: '',
+        new_date: new Date()
       }
     )
   }
