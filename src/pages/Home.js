@@ -3,6 +3,8 @@ import Task from '../components/Task';
 import AddNew from '../components/AddNew';
 import SwitchButton from '../components/SwitchButton';
 
+//import ReduxTest from "../components/reduxTest";
+
 const renderSwitchButton = tasks => {
   const finishedTasks = tasks.filter(task => task.isFinished === true);
   
