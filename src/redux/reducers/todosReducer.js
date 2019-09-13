@@ -1,25 +1,4 @@
-// const todos = (state = [], action) => {
-//   switch (action.type) {
-//     case 'ADD_TODO':
-//       return [
-//         ...state,
-//         {
-//           id: action.id,
-//           text: action.text,
-//           completed: false
-//         }
-//       ]
-//     case 'TOGGLE_TODO':
-//       return state.map(todo =>
-//         todo.id === action.id ? { ...todo, completed: !todo.completed } : todo
-//       )
-//     default:
-//       return state
-//   }
-// }
-
-// export default todos
-import {ADD_TODO, TOGGLE_TODO, DELETE_TODO} from '../actionTypes';
+import { ADD_TASK, TOGGLE_TASK, DELETE_TASK } from '../actionTypes';
 
 const initialState = [
   {
@@ -44,21 +23,41 @@ const initialState = [
     isFinished: true
   },
 ];
-
-const operateTodos = (state = initialState, action) => {
+const addTask = (state, task) => {
+  return [
+    ...state,
+    {
+      id: task.id,
+      title: task.title,
+      description: task.description,
+      date: task.date,
+      isFinished: false
+    }
+  ];
+};
+const toggleTask = (state, id) => {
+  const newState = [...state];
+  const arrayId = newState.findIndex(task => task.id === id);
+ newState[arrayId].isFinished = true;
+  return newState;
+};
+const deleteTask = (state, id) => {
+  const newState = [...state];
+  const arrayId = newState.findIndex(task => task.id === id);
+ newState.splice(arrayId, 1);
+  return newState;
+};
+const operateTasks = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_TODO:
-      console.log('New ADD_TODO');
-      return state;
-    case TOGGLE_TODO:
-      console.log('New TOGGLE_TODO');
-      return state;
-    case DELETE_TODO:
-      console.log('New DELETE_TODO');
-      return state;
+    case ADD_TASK:
+      return addTask(state, action.payload);
+    case TOGGLE_TASK:
+      return toggleTask(state, action.payload);
+    case DELETE_TASK:
+      return deleteTask(state, action.payload);
     default:
       return state;
   }
-}
+};
 
-export default operateTodos;
+export default operateTasks;

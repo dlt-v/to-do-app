@@ -1,20 +1,21 @@
-import React from 'react'
-import SwitchButton from '../components/SwitchButton';
-import Task from '../components/Task';
+import React from "react";
+import SwitchButton from "../components/SwitchButton";
+import Task from "../components/Task";
+
+import { connect } from "react-redux";
 
 const renderSwitchButton = tasks => {
   const finishedTasks = tasks.filter(task => task.isFinished === true);
-  
-  if (finishedTasks.length > 0) return (
-    <SwitchButton onMain={false} text="current tasks" />
-  )
+
+  if (finishedTasks.length > 0)
+    return <SwitchButton onMain={false} text="current tasks" />;
 };
 const renderTasks = tasks => {
   const tasksToRender = tasks.filter(task => task.isFinished === true);
   return tasksToRender;
 };
 
-const Finished = ({ tasks, deleteTask, finishTask }) => {
+const Finished = ({ tasks }) => {
   return (
     <div className="main">
       {renderSwitchButton(tasks)}
@@ -26,12 +27,14 @@ const Finished = ({ tasks, deleteTask, finishTask }) => {
           description={task.description}
           isFinished={task.isFinished}
           date={task.date}
-          deleteTask={deleteTask}
-          finishTask={finishTask}
         />
       ))}
     </div>
-  )
-}
-
-export default Finished
+  );
+};
+const mapStateToProps = state => {
+  return {
+    tasks: state.tasks
+  };
+};
+export default connect(mapStateToProps)(Finished);
