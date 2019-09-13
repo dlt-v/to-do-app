@@ -12,7 +12,7 @@ const renderSwitchButton = tasks => {
     return <SwitchButton onMain={true} text="finished tasks" />;
 };
 const renderTasks = tasks => {
-  const tasksToRender = tasks.filter(task => task.isFinished === false);
+  const tasksToRender = tasks.filter(task => task.finished === false);
   return tasksToRender;
 };
 
@@ -28,7 +28,6 @@ class Home extends Component {
             title={task.title}
             description={task.description}
             date={task.date}
-            isFinished={task.isFinished}
           />
         ))}
         <AddNew />

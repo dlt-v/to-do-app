@@ -1,11 +1,17 @@
 import React from "react";
 import DatePicker from "react-datepicker";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { updateTitle, updateDescription, updateDate, createTask, incrementId } from "../redux/actions";
+import {
+  updateTitle,
+  updateDescription,
+  updateDate,
+  createTask,
+  incrementId
+} from "../redux/actions";
 
-const date = (date) => new Date(date);
+const date = date => new Date(date);
 class AddTask extends React.Component {
   render() {
     return (
@@ -49,10 +55,17 @@ class AddTask extends React.Component {
             />
           </div>
           <div className="modal-add__button-container">
-            <Link to="/">
-              <button
-                className="button-add"
-                onClick={() => {
+            <button
+              className="button-add"
+              onClick={() => {
+                let errorArray = [];
+                if (this.props.title.length === 0) {
+                  errorArray.push("Incorrect title.");
+                }
+                if (this.props.description.length === 0) {
+                  errorArray.push("Incorrect description.");
+                }
+                if (errorArray.length === 0) {
                   this.props.createTask({
                     id: this.props.newId,
                     title: this.props.title,
@@ -63,10 +76,15 @@ class AddTask extends React.Component {
                   this.props.updateTitle("");
                   this.props.updateDescription("");
                   this.props.updateDate(new Date());
-                }}
-              >
+                  this.props.history.push("/");
+                } else {
+                  alert(errorArray[0]);
+                }
+              }}
+            >
               Add
             </button>
+            <Link to="/">
               <button
                 className="button-cancel"
                 onClick={() => {
@@ -103,4 +121,4 @@ export default connect(
     createTask,
     incrementId
   }
-)(AddTask);
+)(withRouter(AddTask));

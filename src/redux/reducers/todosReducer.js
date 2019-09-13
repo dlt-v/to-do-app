@@ -6,21 +6,21 @@ const initialState = [
     title: "I am an example task",
     description: "Ea culpa non magna quis.",
     date: new Date('July 12, 2019 17:23:00'),
-    isFinished: false
+    finished: false
   },
   {
     id: 1,
     title: "I am a second example task",
     description: "Ea culpa non magna quis.",
     date: new Date('July 12, 2019 17:23:00'),
-    isFinished: false
+    finished: false
   },
   {
     id: 2,
     title: "I am a third, finished example task",
     description: "Ea culpa non magna quis.",
     date: new Date('July 12, 2019 17:23:00'),
-    isFinished: true
+    finished: true
   },
 ];
 const addTask = (state, task) => {
@@ -31,14 +31,14 @@ const addTask = (state, task) => {
       title: task.title,
       description: task.description,
       date: task.date,
-      isFinished: false
+      finished: false
     }
   ];
 };
 const toggleTask = (state, id) => {
   const newState = [...state];
   const arrayId = newState.findIndex(task => task.id === id);
- newState[arrayId].isFinished = true;
+ newState[arrayId].finished = true;
   return newState;
 };
 const deleteTask = (state, id) => {

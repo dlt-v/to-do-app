@@ -7,7 +7,7 @@ import AddTask from "./pages/AddTask";
 import "./App.css";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 const App = () => {
   return (
     <>
@@ -20,4 +20,4 @@ const App = () => {
     </>
   );
 };
-export default withRouter(App);
+export default App;

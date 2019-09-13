@@ -11,7 +11,7 @@ const renderSwitchButton = tasks => {
     return <SwitchButton onMain={false} text="current tasks" />;
 };
 const renderTasks = tasks => {
-  const tasksToRender = tasks.filter(task => task.isFinished === true);
+  const tasksToRender = tasks.filter(task => task.finished === true);
   return tasksToRender;
 };
 
@@ -25,7 +25,6 @@ const Finished = ({ tasks }) => {
           key={task.id}
           title={task.title}
           description={task.description}
-          isFinished={task.isFinished}
           date={task.date}
         />
       ))}
