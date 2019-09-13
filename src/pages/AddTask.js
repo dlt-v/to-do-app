@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { updateTitle, updateDescription, updateDate, createTask, incrementId } from "../redux/actions";
 
+const date = (date) => new Date(date);
 class AddTask extends React.Component {
-
   render() {
     return (
       <div className="modal-add">
@@ -39,7 +39,7 @@ class AddTask extends React.Component {
           <div className="modal-add__date-container">
             <DatePicker
               className="modal-add__date-input"
-              selected={this.props.date}
+              selected={date(this.props.date)}
               onChange={event => this.props.updateDate(event)}
               showTimeSelect
               timeFormat="HH:mm"
@@ -57,7 +57,7 @@ class AddTask extends React.Component {
                     id: this.props.newId,
                     title: this.props.title,
                     description: this.props.description,
-                    date: this.props.date
+                    date: date(this.props.date)
                   });
                   this.props.incrementId();
                   this.props.updateTitle("");

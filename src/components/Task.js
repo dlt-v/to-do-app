@@ -20,6 +20,7 @@ const addZero = number => {
   return number;
 };
 
+const date = (date) => new Date(date);
 class Task extends React.Component {
   render() {
     return (
@@ -27,11 +28,11 @@ class Task extends React.Component {
         <h2 className="task__title">{this.props.title}</h2>
         <p className="task__desc">{this.props.description}</p>
         <p className="task__date">
-          {`On ${days[this.props.date.getDay()]}, ${addZero(
-            this.props.date.getDate()
+          {`On ${days[date(this.props.date).getDay()]}, ${addZero(
+            date(this.props.date).getDate()
           )}.${addZero(
-            this.props.date.getMonth() + 1
-          )}.${this.props.date.getFullYear()} at ${this.props.date.getHours()}:${this.props.date.getMinutes()}`}
+            date(this.props.date).getMonth() + 1
+          )}.${date(this.props.date).getFullYear()} at ${date(this.props.date).getHours()}:${date(this.props.date).getMinutes()}`}
         </p>
         {this.props.isFinished ? null : (
           <div className="task__buttons">
