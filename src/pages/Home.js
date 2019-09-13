@@ -21,6 +21,7 @@ class Home extends Component {
     return (
       <div className="main">
         {renderSwitchButton(this.props.tasks)}
+        <AddNew />
         {renderTasks(this.props.tasks).map(task => (
           <Task
             id={task.id}
@@ -28,9 +29,10 @@ class Home extends Component {
             title={task.title}
             description={task.description}
             date={task.date}
+            finished={false}
           />
         ))}
-        <AddNew />
+        
       </div>
     );
   }

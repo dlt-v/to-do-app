@@ -9,7 +9,7 @@ const days = [
   "Monday",
   "Tuesday",
   "Wednesday",
-  "Thrusday",
+  "Thursday",
   "Friday",
   "Saturday"
 ];
@@ -32,9 +32,9 @@ class Task extends React.Component {
             date(this.props.date).getDate()
           )}.${addZero(
             date(this.props.date).getMonth() + 1
-          )}.${date(this.props.date).getFullYear()} at ${date(this.props.date).getHours()}:${date(this.props.date).getMinutes()}`}
+          )}.${date(this.props.date).getFullYear()} at ${date(this.props.date).getHours()}:${addZero(date(this.props.date).getMinutes())}`}
         </p>
-        {this.props.isFinished ? null : (
+        {this.props.finished ? null : (
           <div className="task__buttons">
             <div
               className="task__button task__button--done"

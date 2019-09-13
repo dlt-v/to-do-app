@@ -26,6 +26,7 @@ const Finished = ({ tasks }) => {
           title={task.title}
           description={task.description}
           date={task.date}
+          finished={true}
         />
       ))}
     </div>

@@ -20,7 +20,7 @@ class AddTask extends React.Component {
           <h1 className="modal-add__title">Add a new task!</h1>
           <input
             type="text"
-            maxLength="35"
+            maxLength="16"
             name="new_title"
             id="new_title"
             className="modal-add__input--title modal-add__input"
@@ -50,8 +50,11 @@ class AddTask extends React.Component {
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={30}
-              dateFormat="MMMM d, yyyy h:mm aa"
+              minDate={new Date()}
+              dateFormat="MMMM d, yyyy H:mm"
               timeCaption="time"
+              showPopperArrow={false}
+              todayButton="Today"
             />
           </div>
           <div className="modal-add__button-container">
