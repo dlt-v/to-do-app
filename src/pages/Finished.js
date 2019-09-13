@@ -5,7 +5,7 @@ import Task from "../components/Task";
 import { connect } from "react-redux";
 
 const renderSwitchButton = tasks => {
-  const finishedTasks = tasks.filter(task => task.isFinished === true);
+  const finishedTasks = tasks.filter(task => task.finished === true);
 
   if (finishedTasks.length > 0)
     return <SwitchButton onMain={false} text="current tasks" />;
